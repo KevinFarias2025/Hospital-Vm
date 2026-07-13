@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/ms-medicos/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-recetas/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-examenes/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-pacientes/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-urgencias/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-citas-medicas/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-especialidades/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-fichas-clinicas/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-hospitalizacion/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-pagos-convenios/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-eureka-server/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_25" default="true" project-jdk-name="temurin-25" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

@@ -1,0 +1,16 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: ms-eureka-server
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    # --- Solucion documentada del problema de que eureka quiere usar a Jersey y forzamos a usar restemplate ---
+    transport:
+      type: rest_template
+  server:
+    wait-time-in-ms-when-sync-empty: 0

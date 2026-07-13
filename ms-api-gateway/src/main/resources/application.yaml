@@ -1,0 +1,95 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ms-api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: ms-pacientes
+          uri: lb://ms-pacientes
+          predicates:
+            - Path=/api/pacientes/**
+
+        - id: ms-medicos
+          uri: lb://ms-medicos
+          predicates:
+            - Path=/api/medicos/**
+
+        - id: ms-especialidades
+          uri: lb://ms-especialidades
+          predicates:
+            - Path=/api/especialidades/**
+
+        - id: ms-citas-medicas
+          uri: lb://ms-citas-medicas
+          predicates:
+            - Path=/api/citas/**
+
+        - id: ms-examenes
+          uri: lb://ms-examenes
+          predicates:
+            - Path=/api/examenes/**
+
+        - id: ms-fichas-clinicas
+          uri: lb://ms-fichas-clinicas
+          predicates:
+            - Path=/api/fichas/**
+
+        - id: ms-hospitalizacion
+          uri: lb://ms-hospitalizacion
+          predicates:
+            - Path=/api/hospitalizaciones/**
+
+        - id: ms-pagos-convenios
+          uri: lb://ms-pagos-convenios
+          predicates:
+            - Path=/api/pagos/**
+
+        - id: ms-recetas
+          uri: lb://ms-recetas
+          predicates:
+            - Path=/api/recetas/**
+
+        - id: ms-urgencias
+          uri: lb://ms-urgencias
+          predicates:
+            - Path=/api/urgencias/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+
+springdoc:
+  swagger-ui:
+    urls:
+      - name: Pacientes
+        url: /api/pacientes/v3/api-docs
+      - name: Medicos
+        url: /api/medicos/v3/api-docs
+      - name: Especialidades
+        url: /api/especialidades/v3/api-docs
+      - name: Citas Medicas
+        url: /api/citas/v3/api-docs
+      - name: Examenes
+        url: /api/examenes/v3/api-docs
+      - name: Fichas Clinicas
+        url: /api/fichas/v3/api-docs
+      - name: Hospitalizacion
+        url: /api/hospitalizaciones/v3/api-docs
+      - name: Pagos y Convenios
+        url: /api/pagos/v3/api-docs
+      - name: Recetas
+        url: /api/recetas/v3/api-docs
+      - name: Urgencias
+        url: /api/urgencias/v3/api-docs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

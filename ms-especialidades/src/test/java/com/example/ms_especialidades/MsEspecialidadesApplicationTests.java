@@ -1,0 +1,13 @@
+package com.example.ms_especialidades;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class MsEspecialidadesApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}

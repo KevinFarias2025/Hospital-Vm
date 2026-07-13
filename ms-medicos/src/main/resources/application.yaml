@@ -1,0 +1,44 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: ms-medicos # Para que lo encuentre Gateway y FeignClient
+
+  datasource:
+    # DB_HOST sera reemplazado por Docker. Si ejecutas en tu PC, usara localhost por defecto.
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/db_medicos?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true # Para ver en consola los UPDATE del Soft Delete
+
+# Configuracion para registrarse en el servidor Eureka
+eureka:
+  client:
+    service-url:
+      # EUREKA_URL sera inyectado por Docker. Si estas en tu PC, usa localhost.
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+
+# Exposicion de endpoints de salud
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info"
+  endpoint:
+    health:
+      show-details: always
+
+springdoc:
+  api-docs:
+    enabled: true
+    # AJUSTE CLAVE: Se modifica la ruta para que coincida con el enrutamiento del API Gateway
+    path: /api/medicos/v3/api-docs

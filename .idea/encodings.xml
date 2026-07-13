@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/ms-api-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-citas-medicas/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-especialidades/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-eureka-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-examenes/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-fichas-clinicas/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-hospitalizacion/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-medicos/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-pacientes/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-pagos-convenios/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-recetas/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-urgencias/src/main/java" charset="UTF-8" />
+  </component>
+</project>

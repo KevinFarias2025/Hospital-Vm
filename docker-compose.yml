@@ -1,0 +1,188 @@
+version: '3.8'
+
+networks:
+  hospital-network:
+    driver: bridge
+
+services:
+  # ----------------------------------------
+  # 1. BASE DE DATOS CENTRAL
+  # ----------------------------------------
+  hospital-db:
+    image: mysql:8.0
+    container_name: hospital-db
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    networks:
+      - hospital-network
+
+  # ----------------------------------------
+  # 2. EL DIRECTORIO (EUREKA)
+  # ----------------------------------------
+  ms-eureka-server:
+    build: ./ms-eureka-server
+    container_name: ms-eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - hospital-network
+
+  # ----------------------------------------
+  # 3. EL ENRUTADOR (API GATEWAY)
+  # ----------------------------------------
+  ms-api-gateway:
+    build: ./ms-api-gateway
+    container_name: ms-api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_URL=http://ms-eureka-server:8761/eureka/
+    depends_on:
+      - ms-eureka-server
+    networks:
+      - hospital-network
+
+  # ----------------------------------------
+  # 4. MICROSERVICIOS DE NEGOCIO
+  # ----------------------------------------
+  ms-citas-medicas:
+    build: ./ms-citas-medicas
+    container_name: ms-citas-medicas
+    ports:
+      - "8083:8083"
+    environment:
+      - DB_HOST=hospital-db
+      - EUREKA_URL=http://ms-eureka-server:8761/eureka/
+    depends_on:
+      - hospital-db
+      - ms-eureka-server
+    networks:
+      - hospital-network
+
+  ms-especialidades:
+    build: ./ms-especialidades
+    container_name: ms-especialidades
+    ports:
+      - "8084:8084"
+    environment:
+      - DB_HOST=hospital-db
+      - EUREKA_URL=http://ms-eureka-server:8761/eureka/
+    depends_on:
+      - hospital-db
+      - ms-eureka-server
+    networks:
+      - hospital-network
+
+  ms-examenes:
+    build: ./ms-examenes
+    container_name: ms-examenes
+    ports:
+      - "8085:8085"
+    environment:
+      - DB_HOST=hospital-db
+      - EUREKA_URL=http://ms-eureka-server:8761/eureka/
+    depends_on:
+      - hospital-db
+      - ms-eureka-server
+    networks:
+      - hospital-network
+
+  ms-fichas-clinicas:
+    build: ./ms-fichas-clinicas
+    container_name: ms-fichas-clinicas
+    ports:
+      - "8086:8086"
+    environment:
+      - DB_HOST=hospital-db
+      - EUREKA_URL=http://ms-eureka-server:8761/eureka/
+    depends_on:
+      - hospital-db
+      - ms-eureka-server
+    networks:
+      - hospital-network
+
+  ms-hospitalizacion:
+    build: ./ms-hospitalizacion
+    container_name: ms-hospitalizacion
+    ports:
+      - "8087:8087"
+    environment:
+      - DB_HOST=hospital-db
+      - EUREKA_URL=http://ms-eureka-server:8761/eureka/
+    depends_on:
+      - hospital-db
+      - ms-eureka-server
+    networks:
+      - hospital-network
+
+  ms-medicos:
+    build: ./ms-medicos
+    container_name: ms-medicos
+    ports:
+      - "8088:8088"
+    environment:
+      - DB_HOST=hospital-db
+      - EUREKA_URL=http://ms-eureka-server:8761/eureka/
+    depends_on:
+      - hospital-db
+      - ms-eureka-server
+    networks:
+      - hospital-network
+
+  ms-pacientes:
+    build: ./ms-pacientes
+    container_name: ms-pacientes
+    ports:
+      - "8089:8089"
+    environment:
+      - DB_HOST=hospital-db
+      - EUREKA_URL=http://ms-eureka-server:8761/eureka/
+    depends_on:
+      - hospital-db
+      - ms-eureka-server
+    networks:
+      - hospital-network
+
+  ms-pagos-convenios:
+    build: ./ms-pagos-convenios
+    container_name: ms-pagos-convenios
+    ports:
+      - "8090:8090"
+    environment:
+      - DB_HOST=hospital-db
+      - EUREKA_URL=http://ms-eureka-server:8761/eureka/
+    depends_on:
+      - hospital-db
+      - ms-eureka-server
+    networks:
+      - hospital-network
+
+  ms-recetas:
+    build: ./ms-recetas
+    container_name: ms-recetas
+    ports:
+      - "8091:8091"
+    environment:
+      - DB_HOST=hospital-db
+      - EUREKA_URL=http://ms-eureka-server:8761/eureka/
+    depends_on:
+      - hospital-db
+      - ms-eureka-server
+    networks:
+      - hospital-network
+
+  ms-urgencias:
+    build: ./ms-urgencias
+    container_name: ms-urgencias
+    ports:
+      - "8092:8092"
+    environment:
+      - DB_HOST=hospital-db
+      - EUREKA_URL=http://ms-eureka-server:8761/eureka/
+    depends_on:
+      - hospital-db
+      - ms-eureka-server
+    networks:
+      - hospital-network
