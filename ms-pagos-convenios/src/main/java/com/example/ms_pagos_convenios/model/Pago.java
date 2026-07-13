@@ -21,28 +21,33 @@ public class Pago {
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id_pago;
 
-    // [L-FK] Llaves logicas
     @NotNull(message = "El id del paciente es obligatorio")
     @Column(nullable = false)
+    @Schema(example = "1")
     private Long id_paciente;
 
     @NotNull(message = "El id de referencia del servicio es obligatorio")
     @Column(nullable = false)
+    @Schema(example = "1")
     private Long id_referencia_servicio;
 
     @NotBlank(message = "El tipo de servicio es obligatorio (Ej: CITA, EXAMEN)")
     @Column(nullable = false)
+    @Schema(example = "URGENCIA", allowableValues = {"URGENCIA", "HOSPITALIZACION", "EXAMENES", "CITA"})
     private String tipo_servicio;
 
     @NotNull(message = "El monto total es obligatorio")
     @PositiveOrZero(message = "El monto no puede ser negativo")
     @Column(nullable = false)
+    @Schema(example = "0.0")
     private Double monto_total;
 
     @NotBlank(message = "El estado del pago es obligatorio")
     @Column(nullable = false)
+    @Schema(example = "PENDIENTE", allowableValues = {"PENDIENTE", "PAGADO", "ANULADO"})
     private String estado_pago;
 
     @Column(nullable = false)
+    @Schema(example = "true")
     private boolean estado_activo = true;
 }

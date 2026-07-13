@@ -33,6 +33,12 @@ public class RecetaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevaReceta);
     }
 
+    // TAREA 1: Endpoint PUT para modificar la receta médica
+    @PutMapping("/{id}")
+    public ResponseEntity<Receta> modificarId(@PathVariable Long id, @Valid @RequestBody Receta receta) {
+        return ResponseEntity.ok(service.modificarId(id, receta));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarId(@PathVariable Long id) {
         service.eliminarId(id);

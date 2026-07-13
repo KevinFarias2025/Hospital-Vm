@@ -33,6 +33,11 @@ public class HospitalizacionController {
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevaHosp);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Hospitalizacion> modificarId(@PathVariable Long id, @Valid @RequestBody Hospitalizacion hospitalizacion) {
+        return ResponseEntity.ok(service.modificarId(id, hospitalizacion));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarId(@PathVariable Long id) {
         service.eliminarId(id);

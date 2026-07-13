@@ -33,6 +33,11 @@ public class MedicoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoMedico);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Medico> modificarId(@PathVariable Long id, @Valid @RequestBody Medico medico) {
+        return ResponseEntity.ok(service.modificarId(id, medico));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarId(@PathVariable Long id) {
         service.eliminarId(id);

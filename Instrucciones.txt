@@ -1,0 +1,24 @@
+# 0. Matar todo
+docker-compose down --remove-orphans -v
+docker system prune -a --volumes -f
+Get-ChildItem -Path . -Include target -Recurse -Directory | Remove-Item -Recurse -Force
+
+# 1. Compilar Eureka y Gateway primero, luego el resto de weas
+cd ms-eureka-server; .\mvnw clean package -DskipTests; cd ..
+cd ms-api-gateway; .\mvnw clean package -DskipTests; cd ..
+cd ms-citas-medicas; .\mvnw clean package -DskipTests; cd ..
+cd ms-especialidades; .\mvnw clean package -DskipTests; cd ..
+cd ms-examenes; .\mvnw clean package -DskipTests; cd ..
+cd ms-fichas-clinicas; .\mvnw clean package -DskipTests; cd ..
+cd ms-hospitalizacion; .\mvnw clean package -DskipTests; cd ..
+cd ms-medicos; .\mvnw clean package -DskipTests; cd ..
+cd ms-pacientes; .\mvnw clean package -DskipTests; cd ..
+cd ms-pagos-convenios; .\mvnw clean package -DskipTests; cd ..
+cd ms-recetas; .\mvnw clean package -DskipTests; cd ..
+cd ms-urgencias; .\mvnw clean package -DskipTests; cd ..
+
+# 3. Levantar la infraestructura completa en Docker
+docker-compose up -d --build --force-recreate
+
+# 4. Prueba unitaria con Mockito, wn anda directo al terminal desde la raiz de ms y pos ya
+.\mvnw test -Dtest=PagoServiceTest

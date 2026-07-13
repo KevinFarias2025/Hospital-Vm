@@ -1,4 +1,5 @@
 package com.example.ms_pagos_convenios.client;
+
 import com.example.ms_pagos_convenios.dto.PacienteDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

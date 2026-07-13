@@ -33,6 +33,12 @@ public class UrgenciaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevaUrgencia);
     }
 
+    // TAREA 1: Método PUT añadido aquí
+    @PutMapping("/{id}")
+    public ResponseEntity<Urgencia> modificarId(@PathVariable Long id, @Valid @RequestBody Urgencia urgencia) {
+        return ResponseEntity.ok(service.modificarId(id, urgencia));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarId(@PathVariable Long id) {
         service.eliminarId(id);

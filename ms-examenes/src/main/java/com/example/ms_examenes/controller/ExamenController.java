@@ -33,6 +33,12 @@ public class ExamenController {
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoExamen);
     }
 
+    // TAREA 1: Método PUT añadido aquí
+    @PutMapping("/{id}")
+    public ResponseEntity<Examen> modificarId(@PathVariable Long id, @Valid @RequestBody Examen examen) {
+        return ResponseEntity.ok(service.modificarId(id, examen));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarId(@PathVariable Long id) {
         service.eliminarId(id);

@@ -1,5 +1,6 @@
 package com.example.ms_pagos_convenios.controller;
 
+import com.example.ms_pagos_convenios.dto.PagoRequestDTO;
 import com.example.ms_pagos_convenios.model.Pago;
 import com.example.ms_pagos_convenios.service.PagoService;
 import jakarta.validation.Valid;
@@ -27,9 +28,10 @@ public class PagoController {
         return ResponseEntity.ok(service.getPorId(id));
     }
 
-    @PostMapping
-    public ResponseEntity<Pago> crearId(@Valid @RequestBody Pago pago) {
-        Pago nuevoPago = service.crearId(pago);
+    // Endpoint clave que invocan los Feign Clients de los otros microservicios
+    @PostMapping("/procesar")
+    public ResponseEntity<Pago> procesarCobro(@Valid @RequestBody PagoRequestDTO request) {
+        Pago nuevoPago = service.procesarCobro(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoPago);
     }
 

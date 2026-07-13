@@ -33,6 +33,11 @@ public class FichaClinicaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevaFicha);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<FichaClinica> modificarId(@PathVariable Long id, @Valid @RequestBody FichaClinica ficha) {
+        return ResponseEntity.ok(service.modificarId(id, ficha));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarId(@PathVariable Long id) {
         service.eliminarId(id);

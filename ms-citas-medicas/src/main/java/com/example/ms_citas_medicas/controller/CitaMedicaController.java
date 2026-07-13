@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/citas")
+@RequestMapping("/api/citas-medicas")
 @RequiredArgsConstructor
 public class CitaMedicaController {
 
@@ -33,6 +33,7 @@ public class CitaMedicaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevaCita);
     }
 
+    // TAREA 1: Endpoint PUT para modificar la cita médica
     @PutMapping("/{id}")
     public ResponseEntity<CitaMedica> modificarId(@PathVariable Long id, @Valid @RequestBody CitaMedica cita) {
         return ResponseEntity.ok(service.modificarId(id, cita));

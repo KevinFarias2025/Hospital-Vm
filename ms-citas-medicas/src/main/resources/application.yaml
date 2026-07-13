@@ -33,4 +33,4 @@ management:
 springdoc:
   api-docs:
     enabled: true
-    path: /api/citas/v3/api-docs
+    path: /api/citas-medicas/v3/api-docs

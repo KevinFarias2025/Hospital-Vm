@@ -32,6 +32,12 @@ public class Paciente {
     @Max(value = 130, message = "Edad fuera de rango permitido")
     private Integer edad;
 
+    @NotBlank(message = "La previsión es obligatoria")
+    @Pattern(regexp = "^[a-cA-C]$", message = "La previsión debe ser A (Isapre), B (Fonasa) o C (Ninguna)")
+    @Column(nullable = false)
+    @Schema(description = "Previsión del paciente", example = "C", allowableValues = {"A", "B", "C"})
+    private String prevision;
+
     @Column(nullable = false)
     private boolean estado_activo = true;
 }

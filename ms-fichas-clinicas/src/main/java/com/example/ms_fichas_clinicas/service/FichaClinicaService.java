@@ -35,6 +35,28 @@ public class FichaClinicaService {
         return repository.save(ficha);
     }
 
+    public FichaClinica modificarId(Long id, FichaClinica fichaActualizada) {
+        FichaClinica fichaExistente = getPorId(id);
+
+        // Validar paciente si el id_paciente enviado es distinto al actual
+        if (!fichaExistente.getId_paciente().equals(fichaActualizada.getId_paciente())) {
+            try {
+                var paciente = pacienteClient.obtenerPacientePorId(fichaActualizada.getId_paciente());
+                if (paciente == null) throw new RuntimeException("Paciente no existe.");
+            } catch (Exception e) {
+                throw new RuntimeException("Error al validar paciente: " + e.getMessage());
+            }
+        }
+
+        fichaExistente.setId_paciente(fichaActualizada.getId_paciente());
+        fichaExistente.setAntecedentes(fichaActualizada.getAntecedentes());
+        fichaExistente.setAlergias(fichaActualizada.getAlergias());
+        fichaExistente.setGrupo_sanguineo(fichaActualizada.getGrupo_sanguineo());
+        fichaExistente.setEstado_activo(fichaActualizada.isEstado_activo());
+
+        return repository.save(fichaExistente);
+    }
+
     public void eliminarId(Long id) {
         FichaClinica ficha = getPorId(id);
         repository.delete(ficha);

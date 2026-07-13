@@ -25,7 +25,7 @@ spring:
         - id: ms-citas-medicas
           uri: lb://ms-citas-medicas
           predicates:
-            - Path=/api/citas/**
+            - Path=/api/citas-medicas/**
 
         - id: ms-examenes
           uri: lb://ms-examenes
@@ -74,7 +74,7 @@ springdoc:
       - name: Especialidades
         url: /api/especialidades/v3/api-docs
       - name: Citas Medicas
-        url: /api/citas/v3/api-docs
+        url: /api/citas-medicas/v3/api-docs
       - name: Examenes
         url: /api/examenes/v3/api-docs
       - name: Fichas Clinicas
